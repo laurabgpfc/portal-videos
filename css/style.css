@@ -1,0 +1,147 @@
+body {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+header form .form-error, .modal form .form-error {
+	display: none;
+	float: left;
+	margin-right: 10px;
+}
+
+header form .form-error-show, .modal form .form-error-show {
+	display: block;
+}
+
+header span.saludo {
+	color: #999;
+	padding: 5px;
+}
+
+#main {
+	margin-top: 50px;
+}
+
+#main h1, #main h2 {
+	margin-top: 0px;
+}
+
+#main .panel.no-margin {
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+#main .panel.no-margin .panel-heading {
+	border-radius: 0px;
+}
+
+#main .panel .row {
+	margin-bottom: 15px;
+}
+
+#main .panel .row:last-child {
+	margin-bottom: 0px;
+}
+
+#main .page {
+	display: none;
+}
+
+#main .page._current {
+	display: block;
+}
+
+#main .botones-visualizacion button {
+	margin-right: 10px;
+}
+
+#main .botones-visualizacion button.pull-right {
+	margin-right: 0px;
+	margin-left: 10px;
+}
+
+#main .listado-videos .row div[class*="col-md"]:last-child {
+	padding-left: 0px;
+}
+
+#main .listado-videos .item {
+	margin-bottom: 15px;
+}
+
+#main .listado-videos .item:last-child {
+	margin-bottom: 0px;
+}
+
+div.margin-bottom {
+	margin-bottom: 15px;
+}
+
+div[class*="col-md"] img {
+	width: 100%;
+	height: auto;
+}
+
+div[class*="col-md"] a {
+	color: inherit;
+}
+
+span.play-video {
+	position: absolute;
+	z-index: 2;
+	left: 50%;
+	top: 20%;
+	color: #fff;
+	border: 2px solid #fff;
+	border-radius: 20px;
+	padding: 5px;
+	font-size: 20px;
+	margin-left: -10px;
+}
+
+a.ver-video:hover span.play-video {
+	color: #000;
+	border-color: #000;
+}
+
+p.adjunto-desc {
+	margin-top: 10px;
+}
+/*.row {
+	margin-bottom: 20px;
+}*/
+/*
+.container.curso {
+	border: 1px solid #6e6e6e;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+.container.curso .titulo {
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 30px;
+	line-height: 30px;
+	background: #ececec;
+}
+
+.container.curso .row {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.container.curso .row .col {
+	border: 1px solid red;
+}
+
+/*
+.theme-dropdown .dropdown-menu {
+	position: static;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+	margin: 5px 0;
+}
+*/
+

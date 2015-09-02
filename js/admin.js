@@ -248,6 +248,8 @@ function loadAjaxForm() {
 					nuevaCat += '</div>';
 
 					$('.listaCategorias').append(nuevaCat);
+
+					loadAjaxForm();
 				}
 			}
 		});

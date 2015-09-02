@@ -82,7 +82,7 @@ $OUT .= '<form name="videos" role="form" method="POST" action="'._PORTALROOT.'mo
 		$OUT .= '<label for="descripcion">Descripción del vídeo:</label>';
 		$OUT .= '<textarea class="form-control" name="descripcion" rows="3">'.$_POST['descripcion'].'</textarea>';
 	$OUT .= '</div>';
-	if (sizeof($listaTemas) > 0) {
+	if ( ($_POST['IDvideo'] != '')&&(sizeof($listaTemas) > 0) ) {
 		$OUT .= '<div class="form-group">';
 			$OUT .= '<label for="cambiar-video">Seleccione el tema donde quiere cambiar el v&iacute;deo:</label>';
 			$OUT .= '<select class="form-control" name="cambiar-video" id="cambiar-video" >';

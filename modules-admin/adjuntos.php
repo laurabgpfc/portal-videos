@@ -82,7 +82,7 @@ $OUT .= '<form name="adjuntos" role="form" method="POST" action="'._PORTALROOT.'
 		$OUT .= '<label for="descripcion">Descripción del archivo adjunto:</label>';
 		$OUT .= '<textarea class="form-control" name="descripcion" rows="3">'.$_POST['descripcion'].'</textarea>';
 	$OUT .= '</div>';
-	if (sizeof($listaVideos) > 0) {
+	if ( ($_POST['IDadjunto'] != '')&&(sizeof($listaVideos) > 0) ) {
 		$OUT .= '<div class="form-group">';
 			$OUT .= '<label for="cambiar-adjunto">Seleccione el v&iacute;deo donde quiere cambiar el archivo adjunto:</label>';
 			$OUT .= '<select class="form-control" name="cambiar-adjunto" id="cambiar-adjunto" >';

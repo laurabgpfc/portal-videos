@@ -63,7 +63,7 @@ $OUT .= '<form role="form" method="POST" action="'._PORTALROOT.'modules-admin/te
 		$OUT .= '<label for="descripcion">Descripción del tema:</label>';
 		$OUT .= '<textarea class="form-control" name="descripcion" rows="3">'.$_POST['descripcion'].'</textarea>';
 	$OUT .= '</div>';
-	if (sizeof($listaCursos) > 0) {
+	if ( ($_POST['IDtema'] != '')&&(sizeof($listaCursos) > 0) ) {
 		$OUT .= '<div class="form-group">';
 			$OUT .= '<label for="cambiar-tema">Seleccione el curso donde quiere cambiar el tema:</label>';
 			$OUT .= '<select class="form-control" name="cambiar-tema" id="cambiar-teman" >';

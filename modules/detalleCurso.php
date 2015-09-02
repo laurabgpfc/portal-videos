@@ -44,7 +44,7 @@ if ( ($cursoData['publico'] == 0)&&(!isset($_COOKIE['MoodleUserSession'])) ) {
 		$OUT .= '</div>';
 	$OUT .= '</div>';
 
-} else if ( ($cursoData['IDcursoMoodle'] == '')||($cursoData['IDcursoMoodle'] == 0) ) {
+} else if ( ($cursoData['publico'] == 0) && ( ($cursoData['IDcursoMoodle'] == '')||($cursoData['IDcursoMoodle'] == 0) ) ) {
 	$OUT .= '<div class="container">';
 		$OUT .= '<div class="row">';
 			$OUT .= '<div class="col-md-12 margin-bottom">';

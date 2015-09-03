@@ -53,7 +53,7 @@ function updateVideoOrden($IDvideo, $orden) {
  */
 function updateVideoIMG($IDvideo, $img) {
 	global $db;
-
+	
 	$db->exec('UPDATE videos SET img = "'.$img.'" WHERE ID = '.decrypt($IDvideo).';');
 }
 
@@ -114,13 +114,13 @@ function checkVideo($condicion) {
 function getIDvideo($IDcurso, $IDtema, $nombre, $ruta, $crearVideo) {
 	global $db;
 
-	if ( ($crearVideo == 1)&&(checkVideo('nombre = "'.$nombre.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema)) == 0) ) {
+	if ( ($crearVideo == 1)&&(checkVideo('ruta = "'.$ruta.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema)) == 0) ) {
 		$orden = getNextOrdenVideo($IDcurso, $IDtema);
 
 		createVideo($IDcurso, $IDtema, $nombre, '', $ruta, $img, '', $orden, _OCULTO);
 	}
-
-	return $db->querySingle('SELECT IDencriptado FROM videos WHERE nombre = "'.$nombre.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema));
+ 
+	return $db->querySingle('SELECT IDencriptado FROM videos WHERE ruta = "'.$ruta.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema));
 }
 
 /*

@@ -102,13 +102,13 @@ function checkAdjunto($condicion) {
 function getIDadjunto($IDcurso, $IDtema, $IDvideo, $nombre, $ruta, $crearAdjunto) {
 	global $db;
 
-	if ( ($crearAdjunto == 1)&&(checkAdjunto('nombre = "'.$nombre.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema).' AND IDvideo = '.decrypt($IDvideo)) == 0) ) {
+	if ( ($crearAdjunto == 1)&&(checkAdjunto('ruta = "'.$ruta.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema).' AND IDvideo = '.decrypt($IDvideo)) == 0) ) {
 		$orden = getNextOrdenAdjunto($IDcurso, $IDtema, $IDvideo);
 
 		createAdjunto($IDcurso, $IDtema, $IDvideo, $nombre, '', $ruta, '', $orden, _OCULTO);
 	}
 
-	return $db->querySingle('SELECT ID FROM videosAdjuntos WHERE nombre = "'.$nombre.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema).' AND IDvideo = '.decrypt($IDvideo));
+	return $db->querySingle('SELECT ID FROM videosAdjuntos WHERE ruta = "'.$ruta.'" AND IDcurso = '.decrypt($IDcurso).' AND IDtema = '.decrypt($IDtema).' AND IDvideo = '.decrypt($IDvideo));
 }
 
 /*

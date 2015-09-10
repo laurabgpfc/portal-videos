@@ -59,7 +59,7 @@ include_once('config.php');
 							<div class="form-group">
 								<span class="saludo">Bienvenido, <?php echo decrypt($_COOKIE['MoodleUserSession'],1)['fullname']; ?></span>
 							</div>
-							<button type="submit" value="aa" name="logout" class="btn btn-danger">Cerrar sesi&oacute;n</button>
+							<button type="submit" value="" name="logout" class="btn btn-danger">Cerrar sesi&oacute;n</button>
 						<?php } ?>
 						</form>
 					</div><!--/.navbar-collapse -->

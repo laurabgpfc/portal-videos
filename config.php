@@ -34,8 +34,6 @@ define('_ENCRIPTAR', getAdminvar('_ENCRIPTAR'),true);
 define('_EKEY', getAdminvar('_EKEY'));
 define('_AKEY', getAdminvar('_AKEY'));
 
-//define('_WSTOKEN', '418a443a4b1696cb83716eb1eb106c64');
-//define('_MOODLEURL', 'http://localhost/moodle');
 
 // Lista de extensiones válidas:
 $extensionesValidas = listaExtensiones(1);

@@ -489,9 +489,9 @@ function beforeLoginSubmit(formData, jqForm, options) {
 
 	console.log('enviando... ('+queryString+')');
 
-	if (queryString.indexOf('logout') != -1) {
+	/*if (queryString.indexOf('logout') != -1) {
 		location.reload();
-	}
+	}*/
 
 	return true;
 } 

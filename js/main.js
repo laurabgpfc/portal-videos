@@ -23,6 +23,12 @@ $(window).load(function() {
 			
 			firstPlay = 0;
 		}
+	}).on('pause', function() {
+		console.log('pause');
+		var api = flowplayer(), currentPos;
+
+		currentPos = api.ready ? api.video.time : 0;
+		console.log(currentPos + ' - ' + api.video.duration);
 	});
 
 	$('.descargarArchivo').click(function() {

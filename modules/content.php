@@ -7,7 +7,7 @@
 			asociarUsernameEmail($_GET['email'], $_GET['username']);
 		}
 		$usuario = getUserData('', $_GET['username'], '');
-		setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), _PORTALROOT);
+		setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30));
 		
 		// Añadir registro al log de accesos:
 		if (isset($_COOKIE['MoodleUserSession'])) {
@@ -19,7 +19,7 @@
 	}
 	
 	if ( (isset($_GET['opt'])) ) {
-		setcookie('listMode', $_GET['opt'], time() + (86400 * 30), _PORTALROOT);
+		setcookie('listMode', $_GET['opt'], time() + (86400 * 30));
 
 		$params = str_replace('opt='.$_GET['opt'].'&', '', $_SERVER['QUERY_STRING']);
 		header('Location: http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$params);
@@ -27,7 +27,7 @@
 	}
 
 	if ( (isset($_GET['cat'])) ) {
-		setcookie('cat', $_GET['cat'], time() + (86400 * 30), _PORTALROOT);
+		setcookie('cat', $_GET['cat'], time() + (86400 * 30));
 
 		$params = str_replace('&cat='.$_GET['cat'], '', $_SERVER['QUERY_STRING']);
 		header('Location: http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$params);

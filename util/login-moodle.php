@@ -23,7 +23,7 @@ function login($userName, $userPass) {
 	if ($errorText == '') {
 		$cookie_name = 'MoodleUserSession';
 		$cookie_value = time();
-		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/'; // 86400 = 1 day
+		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/'); // 86400 = 1 day
 
 		return '';
 	} else {

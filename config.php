@@ -2,14 +2,14 @@
 
 // Definición de constantes
 define('_PORTALROOT', '/portal-videos/');
-define('_DOCUMENTROOT', $_SERVER['DOCUMENT_ROOT']._PORTALROOT);
+define('_DOCUMENTROOT', __DIR__.'/');
 define('_BBDD', _DOCUMENTROOT.'db/dbportalvideos.db');
 define('_BBDDCONFIG', _DOCUMENTROOT.'db/dbconfig.db');
 define('_BBDDLOG', _DOCUMENTROOT.'db/dblog.db');
 define('_BBDDANALYTICS', _DOCUMENTROOT.'db/dbanalytics.db');
 
-include_once(_DOCUMENTROOT.'util/encrypt-decrypt.php');
 include_once(_DOCUMENTROOT.'db/db.php');
+include_once(_DOCUMENTROOT.'util/encrypt-decrypt.php');
 
 $dbConfig = null;
 
@@ -40,5 +40,8 @@ $extensionesValidas = listaExtensiones(1);
 
 // Lista de directorios desde los que leer los cursos:
 $listaDirs = listaUbicaciones(1);
+
+// Valor desencriptado de la cookie MoodleUserSession (si no existe, será vacío):
+$MoodleUserSession = decrypt($_COOKIE['MoodleUserSession'],1);
 
 ?>

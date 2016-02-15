@@ -13,10 +13,10 @@ $SQL = 'SELECT * FROM cursos WHERE';
 $SQL .= ' (publico = 1'; // Mostrar los cursos publicos
 
 // O mostrar los cursos que tengan asociado uno de Moodle
-if ( (isset($_COOKIE['MoodleUserSession']))&&(decrypt($_COOKIE['MoodleUserSession'],1)['esAdmin'] == 1) ) {
+if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 1) ) {
 	$SQL .= ' OR (IDcursoMoodle > 0)';
 } else if ( (isset($_COOKIE['MoodleUserSession']))&&(!isset($_COOKIE['MoodleUserFaltaCorreo'])) ) {
-	$SQL .= ' OR IDcursoMoodle IN (SELECT IDcursoMoodle FROM cursosUsuarios WHERE IDusuario = '.decrypt($_COOKIE['MoodleUserSession'],1)['IDusuario'].')';
+	$SQL .= ' OR IDcursoMoodle IN (SELECT IDcursoMoodle FROM cursosUsuarios WHERE IDusuario = '.$MoodleUserSession['IDusuario'].')';
 }
 $SQL .= ')';
 
@@ -75,7 +75,7 @@ $OUT .= '<div class="container">';
 
 		if ($found == 0) {
 			$OUT .= '<div class="col-md-12">';
-				if ( (isset($_COOKIE['MoodleUserSession']))&&(decrypt($_COOKIE['MoodleUserSession'],1)['IDusuario'] == 0) ) {
+				if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['IDusuario'] == 0) ) {
 					$OUT .= '<strong>No hay cursos registrados en los que est&eacute;s matriculado.</strong>';
 				} else {
 					$OUT .= '<p>En estos momentos no hay cursos publicados.</p>';

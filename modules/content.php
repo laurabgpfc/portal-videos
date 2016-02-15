@@ -49,7 +49,7 @@
 
 	// Añadir registro al log de accesos:
 	if (isset($_COOKIE['MoodleUserSession'])) {
-		logAcceso(decrypt($_COOKIE['MoodleUserSession'],1)['IDusuario'], 'visita', 'http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
+		logAcceso($MoodleUserSession['IDusuario'], 'visita', 'http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
 	} else {
 		logAcceso(0, 'visita', 'http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
 	}

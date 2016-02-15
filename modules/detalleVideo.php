@@ -22,7 +22,7 @@ if ( ($cursoData['publico'] == 0)&&(!isset($_COOKIE['MoodleUserSession'])) ) {
 		$OUT .= '</div>';
 	$OUT .= '</div>';
 
-} else if ( ($cursoData['publico'] == 0)&&(isset($_COOKIE['MoodleUserSession']))&&(decrypt($_COOKIE['MoodleUserSession'],1)['esAdmin'] == 0)&&(checkCursoUsuario('IDusuario = '.decrypt($_COOKIE['MoodleUserSession'],1)['IDusuario'].' AND IDcursoMoodle = '.$cursoData['IDcursoMoodle']) == 0) ) {
+} else if ( ($cursoData['publico'] == 0)&&(isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 0)&&(checkCursoUsuario('IDusuario = '.$MoodleUserSession['IDusuario'].' AND IDcursoMoodle = '.$cursoData['IDcursoMoodle']) == 0) ) {
 	$OUT .= '<div class="container">';
 		$OUT .= '<div class="row">';
 			$OUT .= '<div class="col-md-12 margin-bottom">';

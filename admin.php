@@ -57,7 +57,7 @@ include_once('config.php');
 							<button type="submit" name="login" class="btn btn-success">Acceder</button>
 						<?php } else { ?>
 							<div class="form-group">
-								<span class="saludo">Bienvenido, <?php echo decrypt($_COOKIE['MoodleUserSession'],1)['fullname']; ?></span>
+								<span class="saludo">Bienvenido, <?php echo $MoodleUserSession['fullname']; ?></span>
 							</div>
 							<button type="submit" value="" name="logout" class="btn btn-danger">Cerrar sesi&oacute;n</button>
 						<?php } ?>
@@ -67,7 +67,7 @@ include_once('config.php');
 			</nav>
 		</header>
 		<?php
-			if ( (!isset($_COOKIE['MoodleUserSession'])) || ( (isset($_COOKIE['MoodleUserSession']))&&(decrypt($_COOKIE['MoodleUserSession'],1)['esAdmin'] == 0) ) ) {
+			if ( (!isset($_COOKIE['MoodleUserSession'])) || ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 0) ) ) {
 				$OUT = '<div class="container">';
 					$OUT .= '<div class="row">';
 						$OUT .= '<div class="col-md-12 margin-bottom">';

@@ -37,7 +37,7 @@ require_once('config.php');
 						<a class="navbar-brand" href="index.php">Portal Vídeos</a>
 					</div>
 					<div class="navbar-collapse collapse">
-						<?php if ( (isset($_COOKIE['MoodleUserSession']))&&(decrypt($_COOKIE['MoodleUserSession'],1)['esAdmin'] == 1) ) { ?>
+						<?php if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 1) ) { ?>
 						<ul class="nav navbar-nav">
 							<li><a href="admin.php">Admin</a></li>
 						</ul>
@@ -61,7 +61,7 @@ require_once('config.php');
 							<button type="submit" name="logout" class="btn btn-danger">Cerrar sesi&oacute;n</button-->
 						<?php } else { ?>
 							<!--div class="form-group"-->
-								<span class="saludo">Bienvenido, <?php echo decrypt($_COOKIE['MoodleUserSession'],1)['fullname']; ?></span>
+								<span class="saludo">Bienvenido, <?php echo $MoodleUserSession['fullname']; ?></span>
 							<!--/div-->
 							<button type="submit" value="" name="logout" class="btn btn-danger">Cerrar sesi&oacute;n</button>
 						<?php } ?>

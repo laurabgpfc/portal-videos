@@ -68,7 +68,7 @@ if (isset($_POST['login'])) {
 } else if (isset($_POST['logout'])) {
 	// Añadir registro al log de accesos:
 	if (isset($_COOKIE['MoodleUserSession'])) {
-		logAcceso(decrypt($_COOKIE['MoodleUserSession'],1)['IDusuario'], 'logout', 'Desconexion de '.decrypt($_COOKIE['MoodleUserSession'],1)['fullname']);
+		logAcceso($MoodleUserSession['IDusuario'], 'logout', 'Desconexion de '.$MoodleUserSession['fullname']);
 	}
 
 	logout();

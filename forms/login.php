@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
 		} else if ( ($_POST['userName'] == 'admin')&&($_POST['userPass'] == _ADMINPASS) ) {
 			$usuario = getUserData('', $_POST['userName'], '');
-			setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30));
+			setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), '/');
 			
 			// Añadir registro al log de accesos:
 			if ($usuario['IDusuario'] > 0) {
@@ -25,11 +25,11 @@ if (isset($_POST['login'])) {
 
 			if ($rsp == '') {
 				$usuario = getUserData('', $_POST['userName'], '');
-				setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30));
+				setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), '/');
 				
 				// Comprobar si el usuario esta asociado al email:
 				if (checkUsuario('username = "'.$_POST['userName'].'"') == 0) {
-					setcookie('MoodleUserFaltaCorreo', encrypt($_POST['userName'],1), time() + (86400 * 30)); // 86400 = 1 day
+					setcookie('MoodleUserFaltaCorreo', encrypt($_POST['userName'],1), time() + (86400 * 30), '/'); // 86400 = 1 day
 
 				} else {
 					// Añadir registro al log de accesos:
@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
 		asociarUsernameEmail($_POST['email'], decrypt($_COOKIE['MoodleUserFaltaCorreo'],1));
 		$usuario = getUserData('', '', $_POST['email']);
 		
-		setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30));
+		setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), '/');
 		
 		// Añadir registro al log de accesos:
 		if ($usuario['IDusuario'] > 0) {
@@ -62,7 +62,7 @@ if (isset($_POST['login'])) {
 		}
 
 		unset($_COOKIE['MoodleUserFaltaCorreo']);
-		setcookie('MoodleUserFaltaCorreo', null, -1);
+		setcookie('MoodleUserFaltaCorreo', null, -1, '/');
 	}
 
 } else if (isset($_POST['logout'])) {
@@ -75,7 +75,7 @@ if (isset($_POST['login'])) {
 
 	if (isset($_COOKIE['MoodleUserFaltaCorreo'])) {
 		unset($_COOKIE['MoodleUserFaltaCorreo']);
-		setcookie('MoodleUserFaltaCorreo', null, -1);
+		setcookie('MoodleUserFaltaCorreo', null, -1, '/');
 	}
 	
 	if (isset($_COOKIE['MoodleUserAdmin'])) {

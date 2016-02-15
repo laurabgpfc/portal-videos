@@ -23,7 +23,7 @@ function login($userName, $userPass) {
 	if ($errorText == '') {
 		$cookie_name = 'MoodleUserSession';
 		$cookie_value = time();
-		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), _PORTALROOT); // 86400 = 1 day
+		setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/'; // 86400 = 1 day
 
 		return '';
 	} else {
@@ -34,7 +34,7 @@ function login($userName, $userPass) {
 function logout() {
 	if (isset($_COOKIE['MoodleUserSession'])) {
 		unset($_COOKIE['MoodleUserSession']);
-		setcookie('MoodleUserSession', null, -1, _PORTALROOT);
+		setcookie('MoodleUserSession', null, -1, '/');
 	}
 }
 

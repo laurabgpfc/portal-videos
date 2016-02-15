@@ -115,7 +115,7 @@ if ( ($cursoData['publico'] == 0)&&(!isset($_COOKIE['MoodleUserSession'])) ) {
 					} else {
 						if (isset($_COOKIE['cat'])) {
 							unset($_COOKIE['cat']);
-							setcookie('cat', null, -1);
+							setcookie('cat', null, -1, '/');
 						}
 					}
 				$OUT .= '</div>';

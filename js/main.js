@@ -29,6 +29,21 @@ $(window).load(function() {
 
 		currentPos = api.ready ? api.video.time : 0;
 		console.log(currentPos + ' - ' + api.video.duration);
+		console.log(sPageURL);
+
+		$.ajax({
+			type: 'POST',
+			async: true,
+			url: 'modules/videoPlayed.php',
+			data: sPageURL+'&duracion='+api.video.duration+'&segundo='+currentPos,
+			success: function(msg) {
+				console.log('ok');
+				console.log(msg);
+			},
+			failure: function() {
+				console.log('error');
+			}
+		});
 	});
 
 	$('.descargarArchivo').click(function() {

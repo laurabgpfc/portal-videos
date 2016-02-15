@@ -237,6 +237,9 @@ function crearTablasAnalytics() {
 		IDtema INTEGER,
 		IDvideo INTEGER,
 		IDusuario INTEGER,
+		duracion INTEGER,
+		segundo INTEGER,
+		visto INTEGER,
 		"timestamp" DATETIME DEFAULT CURRENT_TIMESTAMP);'
 	);
 
@@ -306,16 +309,22 @@ function logAction($action) {
 /* ------------------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------------------ */
 
-function videoPlayed($IDcurso, $IDtema, $IDvideo, $IDusuario) {
+function videoPlayed($IDcurso, $IDtema, $IDvideo, $IDusuario, $duracion, $segundo) {
 	global $dbAn;
 
-	$dbAn->exec('INSERT INTO analytics (IDcurso, IDtema, IDvideo, IDusuario) VALUES ('.decrypt($IDcurso).','.decrypt($IDtema).','.decrypt($IDvideo).','.$IDusuario.')');
+	//$dbAn->exec('INSERT INTO analytics (IDcurso, IDtema, IDvideo, IDusuario) VALUES ('.decrypt($IDcurso).','.decrypt($IDtema).','.decrypt($IDvideo).','.$IDusuario.')');
+	$visto = 0;
+	if ($duracion == $segundo) {
+		$visto = 1;
+	}
+
+	$dbAn->exec('INSERT INTO analytics (IDcurso, IDtema, IDvideo, IDusuario, duracion, segundo, visto) VALUES ('.decrypt($IDcurso).','.decrypt($IDtema).','.decrypt($IDvideo).','.$IDusuario.', '.$duracion.', '.$segundo.', '.$visto.')');
 }
 
 
 function descargarArchivo($IDcurso, $IDtema, $IDvideo, $IDadjunto, $IDusuario) {
 	global $dbAn;
-	echo 'INSERT INTO descargas (IDcurso, IDtema, IDvideo, IDadjunto, IDusuario) VALUES ('.decrypt($IDcurso).','.decrypt($IDtema).','.decrypt($IDvideo).','.$IDadjunto.','.$IDusuario.')';
+	
 	$dbAn->exec('INSERT INTO descargas (IDcurso, IDtema, IDvideo, IDadjunto, IDusuario) VALUES ('.decrypt($IDcurso).','.decrypt($IDtema).','.decrypt($IDvideo).','.$IDadjunto.','.$IDusuario.')');
 }
 

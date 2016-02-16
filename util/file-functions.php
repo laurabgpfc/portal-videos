@@ -39,7 +39,7 @@ function getPortada($nombre, $ruta) {
 	//echo "<br />".$cmd."<br /><br />";
 	
 	if (!shell_exec($cmd)) {
-		chmod($img, 0777);
+		chmod($img, 0775);
 	} else {
 	}
 
@@ -54,7 +54,7 @@ function getPortada($nombre, $ruta) {
  */
  function createDir($rutaDir) {
 	mkdir($rutaDir);
-	chmod($rutaDir, 0777);
+	chmod($rutaDir, 0775);
 }
 
 

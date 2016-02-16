@@ -44,4 +44,10 @@ $listaDirs = listaUbicaciones(1);
 // Valor desencriptado de la cookie MoodleUserSession (si no existe, será vacío):
 $MoodleUserSession = decrypt($_COOKIE['MoodleUserSession'],1);
 
+// Definición de funnciones, por si no existen:
+if (!function_exists("array_column")) {
+	function array_column($array,$column_name) {
+		return array_map(function($element) use($column_name){return $element[$column_name];}, $array);
+	}
+}
 ?>

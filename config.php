@@ -2,7 +2,7 @@
 
 // Definición de constantes
 //define('_PORTALROOT', '/portal-videos/');
-define('_PORTALROOT', 'http://laura-virtual-machine/lblazquez/portal-videos/');
+define('_PORTALROOT', 'http://'.$_SERVER['HTTP_HOST'].'/lblazquez/portal-videos/');
 define('_DOCUMENTROOT', __DIR__.'/');
 define('_BBDD', _DOCUMENTROOT.'db/dbportalvideos.db');
 define('_BBDDCONFIG', _DOCUMENTROOT.'db/dbconfig.db');

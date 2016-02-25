@@ -34,7 +34,7 @@ require_once('config.php');
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="index.php">Portal Vídeos</a>
+						<a class="navbar-brand" href="<?php echo _PORTALROOT ?>">Portal Vídeos</a>
 					</div>
 					<div class="navbar-collapse collapse">
 						<?php if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 1) ) { ?>

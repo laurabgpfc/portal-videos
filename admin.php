@@ -42,7 +42,7 @@ include_once('config.php');
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/portal-videos/">Portal v&iacute;deos</a>
+						<a class="navbar-brand" href="<?php echo _PORTALROOT ?>">Portal v&iacute;deos</a>
 					</div>
 					<div class="navbar-collapse collapse">
 						<form name="userSession" class="navbar-form navbar-right userSession" role="form" method="POST" action="forms/login.php">

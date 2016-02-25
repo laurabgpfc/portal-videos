@@ -55,7 +55,7 @@ if ($msgError != '') {
 $OUT .= '<form role="form" method="POST" action="'._PORTALROOT.'modules-admin/cursos.php">';
 	if ($_POST['IDcurso'] != '') {
 		$OUT .= '<div class="form-group">';
-			$OUT .= '<label>URL del curso:</label> http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT']._PORTALROOT.'?IDcurso='.$cursoData['IDcurso'];
+			$OUT .= '<label>URL del curso:</label> '._PORTALROOT.'?IDcurso='.$cursoData['IDcurso'];
 		$OUT .= '</div>';
 	}
 	$OUT .= '<div class="form-group">';

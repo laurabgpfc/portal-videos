@@ -14,7 +14,7 @@
 			logAcceso($usuario['IDusuario'], 'login-moodle', 'Acceso desde Moodle de '.$usuario['fullname']);
 		}
 		
-		header('Location: http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?IDcurso='.$_GET['IDcurso']);
+		header('Location: '._PORTALROOT.'?IDcurso='.$_GET['IDcurso']);
 		die();
 	}
 	
@@ -22,7 +22,7 @@
 		setcookie('listMode', $_GET['opt'], time() + (86400 * 30), '/');
 
 		$params = str_replace('opt='.$_GET['opt'].'&', '', $_SERVER['QUERY_STRING']);
-		header('Location: http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$params);
+		header('Location: '._PORTALROOT.'?'.$params);
 		die();
 	}
 
@@ -30,7 +30,7 @@
 		setcookie('cat', $_GET['cat'], time() + (86400 * 30), '/');
 
 		$params = str_replace('&cat='.$_GET['cat'], '', $_SERVER['QUERY_STRING']);
-		header('Location: http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$params);
+		header('Location: '._PORTALROOT.'?'.$params);
 		die();
 	}
 	
@@ -49,8 +49,8 @@
 
 	// Añadir registro al log de accesos:
 	if (isset($_COOKIE['MoodleUserSession'])) {
-		logAcceso($MoodleUserSession['IDusuario'], 'visita', 'http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
+		logAcceso($MoodleUserSession['IDusuario'], 'visita', _PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
 	} else {
-		logAcceso(0, 'visita', 'http://'.$_SERVER['HTTP_HOST']._PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
+		logAcceso(0, 'visita', _PORTALROOT.'?'.$_SERVER['QUERY_STRING']);
 	}
 ?>

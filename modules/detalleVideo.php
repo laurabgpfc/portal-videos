@@ -26,7 +26,7 @@ if ( ($cursoData['publico'] == 0)&&(!isset($_COOKIE['MoodleUserSession'])) ) {
 	$OUT .= '<div class="container">';
 		$OUT .= '<div class="row">';
 			$OUT .= '<div class="col-md-12 margin-bottom">';
-				$OUT .= '<h1>Acceso bloqueado</h1>';
+				$OUT .= '<h1>Acceso restringido</h1>';
 				$OUT .= '<p>Para poder ver este v&iacute;deo debes estar matriculado en esta asignatura</p>';
 			$OUT .= '</div>';
 		$OUT .= '</div>';
@@ -36,8 +36,8 @@ if ( ($cursoData['publico'] == 0)&&(!isset($_COOKIE['MoodleUserSession'])) ) {
 	$OUT .= '<div class="container">';
 		$OUT .= '<div class="row">';
 			$OUT .= '<div class="col-md-12 margin-bottom">';
-				$OUT .= '<h1>Acceso restringido</h1>';
-				$OUT .= '<center><strong>Este usuario ha sido bloqueado. No puede visualizar ningún contenido privado.<br/><br/></strong></center>';
+				$OUT .= '<h1>Acceso bloqueado</h1>';
+				$OUT .= '<center><strong>Este usuario ha sido bloqueado. No puede visualizar ning&uacute;n contenido ni p&uacute;blico ni privado.<br/><br/></strong></center>';
 			$OUT .= '</div>';
 		$OUT .= '</div>';
 	$OUT .= '</div>';

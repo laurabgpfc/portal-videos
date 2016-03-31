@@ -159,6 +159,22 @@ function getListaCursos($anoAcademico = "") {
 }
 
 /*
+ * getListaCursosConMoodle: devuelve un array con todos los cursos que tienen ID de Moodle asociado, ordenados:
+ */
+function getListaCursosConMoodle($anoAcademico = "") {
+	global $db;
+	
+	$listaCursos = array();
+
+	$res = $db->query('SELECT * FROM cursos WHERE '.( $anoAcademico != "" ?  'archivar = 1 AND anoAcademico = "'.$anoAcademico.'"' : 'archivar = 0' ).' AND IDcursoMoodle != 0 ORDER BY orden, nombre');
+	while ($row = $res->fetchArray()) {
+		array_push($listaCursos, array($row['IDencriptado'], $row['nombre'], $row['IDcursoMoodle']));
+	}
+
+	return $listaCursos;
+}
+
+/*
  * getListaAnosAcademicos: devuelve un array con todos los años academicos distintos que hay:
  */
 function getListaAnosAcademicos() {

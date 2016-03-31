@@ -501,7 +501,7 @@ function submitLoginDone(responseText, statusText, xhr, $form)  {
 	
 	if (responseText != '') {
 		$('.form-error').show();
-		loadAjaxForm();
+		loadLoginForm();
 	} else {
 		location.reload();
 	}

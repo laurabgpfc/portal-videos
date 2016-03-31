@@ -51,6 +51,15 @@ function checkUsuario($condicion) {
 }
 
 /*
+ checkUsuarioBloqueado: Devuelve true si el usuario está bloqueado, y false si no.
+ */
+function checkUsuarioBloqueado($IDusuario) {
+	global $db;
+	
+	return ($db->querySingle('SELECT COUNT(*) FROM usuarios WHERE ID = '.$IDusuario.' AND bloqueado = 1') > 0);
+}
+
+/*
  bloquearUsuario: Cambia el estado de bloqueo de un usuario
  */
 function bloquearUsuario($IDusuario, $bloqueado) {

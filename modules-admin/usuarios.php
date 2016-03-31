@@ -5,9 +5,8 @@
 <?php
 include_once(__DIR__.'/../config.php');
 include_once(_DOCUMENTROOT.'forms/admin-usuarios.php');
-include_once(_DOCUMENTROOT.'util/ws-connection.php');
 
-$listaCursosMoodle = connect('core_course_get_courses', '');
+$listaCursosConCursoMoodle = getListaCursosConMoodle('');
 
 $OUT = '';
 
@@ -26,7 +25,7 @@ $OUT .= '<form name="usuarios" role="form" method="POST" action="'._PORTALROOT.'
 						$OUT .= '<th>Nombre completo</th>';
 						$OUT .= '<th>Email</th>';
 						$OUT .= '<th></th>';
-					//	$OUT .= '<th></th>';
+					//	$OUT .= '<th></th>'; // Columna para el botón de eliminar usuario
 						$OUT .= '<th></th>';
 					$OUT .= '</tr>';
 				$OUT .= '</thead>';
@@ -53,30 +52,28 @@ $OUT .= '<form name="usuarios" role="form" method="POST" action="'._PORTALROOT.'
 											$OUT .= '</tr>';
 										$OUT .= '</thead>';
 										$OUT .= '<tbody>';
-										if (sizeof($listaCursosMoodle) > 0) {
-											foreach ($listaCursosMoodle as $c) {
-												if ($c->categoryid > 0) {
-													$OUT .= '<tr><td><input name="check-curso-user['.$c->id.']" type="checkbox"';
-													if (in_array($c->id, $usuario['cursos'])) {
-														$OUT .= ' checked';
-													}
-													$OUT .= ' /> '.$c->fullname.'</td></tr>';
+										if (sizeof($listaCursosConCursoMoodle) > 0) {
+											foreach ($listaCursosConCursoMoodle as $c) {
+												$OUT .= '<tr><td><input name="check-curso-user['.$c[2].']" type="checkbox"';
+												if (in_array($c[2], $usuario['cursos'])) {
+													$OUT .= ' checked';
 												}
+												$OUT .= ' /> '.$c[1];
+												$OUT .= '<input name="lista-cursos['.$c[2].']" type="hidden" />';
+												$OUT .= '</td></tr>';
 											}
 											$OUT .= '<tr><td><button type="submit" name="save-cursos-user" value="'.$usuario['ID'].'" class="btn btn-success">Guardar</button></td></tr>';
 										} else {
 											$OUT .= '<tr><td>No hay cursos de Moodle</td></tr>';
 										}
-										/*foreach ($usuario['cursos'] as $curso) {
-											$OUT .= '<tr><td><input type="checkbox" name="'.$curso.'" /> '.$curso.'</td></tr>';
-										}*/
 										$OUT .= '</tbody>';
 									$OUT .= '</table>';
 								$OUT .= '</div>';
 							$OUT .= '</td>';
 						$OUT .= '</tr>';
 					}
-					/*$OUT .= '<tr>';
+					/* HTML para añadir un usuario nuevo:
+					$OUT .= '<tr>';
 						$OUT .= '<td><input type="text" class="form-control" name="fullname" value="'.$_POST['fullname'].'" placeholder="Nombre completo" /></td>';
 						$OUT .= '<td><input type="text" class="form-control" name="email" value="'.$_POST['email'].'" placeholder="Email" /></td>';
 						$OUT .= '<td><button type="submit" name="add-user" class="btn btn-xs btn-success center"><span class="glyphicon glyphicon-floppy-disk"></span></button></td>';

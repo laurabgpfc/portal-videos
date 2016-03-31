@@ -108,9 +108,9 @@ $OUT .= '<form name="adjuntos" role="form" method="POST" action="'._PORTALROOT.'
 	$OUT .= '</div>';
 	if ($cursoData['archivar'] == 0) {
 		$OUT .= '<button type="submit" class="btn btn-default">Guardar</button>';
-	}
-	if ($_POST['IDadjunto'] != '') {
-		$OUT .= '<button type="submit" value="del" name="formDel" class="btn btn-danger">Eliminar</button>';
+		if ($_POST['IDadjunto'] != '') {
+			$OUT .= '<button type="submit" value="del" name="formDel" class="btn btn-danger">Eliminar</button>';
+		}
 	}
 	$OUT .= '<input type="hidden" value="adjuntos" name="form" />';
 	$OUT .= '<input type="hidden" value="'.$_POST['IDcurso'].'" name="IDcurso" />';

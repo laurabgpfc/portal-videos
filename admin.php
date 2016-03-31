@@ -46,8 +46,8 @@ include_once('config.php');
 					</div>
 					<div class="navbar-collapse collapse">
 						<form name="userSession" class="navbar-form navbar-right userSession" role="form" method="POST" action="forms/login.php">
-						<?php if(!isset($_COOKIE['MoodleUserSession'])) { ?>
 							<div class="form-error btn btn-danger"></div>
+						<?php if(!isset($_COOKIE['MoodleUserSession'])) { ?>
 							<div class="form-group">
 								<input name="userName" type="text" placeholder="Usuario" class="form-control" />
 							</div>
@@ -90,7 +90,7 @@ include_once('config.php');
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+		<!--script type="text/javascript" src="js/jquery-ui.min.js"></script-->
 		<script type="text/javascript" src="js/jquery.form.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>

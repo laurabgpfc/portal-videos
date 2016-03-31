@@ -33,18 +33,34 @@ if ($_POST['form'] == 'usuarios') {
 	} else if (isset($_POST['save-cursos-user'])) {
 		$msgError = 'Datos actualizados correctamente'; 
 		$error = 'success'; 
-
+		
+		$listaCursosOK = array();
 		if ( (isset($_POST['check-curso-user']))&&(sizeof($_POST['check-curso-user']) > 0) ) {
+			
 			foreach ($_POST['check-curso-user'] as $IDcursoMoodle => $valor) {
 				$IDcurso = getIDcursoByIDcursoMoodle($IDcursoMoodle);
 
 				if ($valor == 'on') {
-					crearCursoUsuario($IDcurso, $IDcursoMoodle, $_POST['save-cursos-user']);
-				} else {
+					if ($IDcurso) {
+						array_push($listaCursosOK, $IDcursoMoodle);
+
+						createCursoUsuario($IDcurso, $IDcursoMoodle, $_POST['save-cursos-user']);
+					}
+				}
+			}
+		}
+
+		foreach ($_POST['lista-cursos'] as $IDcursoMoodle => $valor) {
+			if (in_array($IDcursoMoodle, $listaCursosOK)) {
+			} else {
+				$IDcurso = getIDcursoByIDcursoMoodle($IDcursoMoodle);
+
+				if ($IDcurso) {
 					deleteCursoUsuario($IDcurso, $IDcursoMoodle, $_POST['save-cursos-user']);
 				}
 			}
 		}
+		
 
 	} else if (isset($_POST['add-user'])) {
 		if ( ($_POST['fullname'] != '')&&($_POST['email'] != '') ) {

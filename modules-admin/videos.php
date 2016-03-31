@@ -139,9 +139,9 @@ $OUT .= '<form name="videos" role="form" method="POST" action="'._PORTALROOT.'mo
 	}
 	if ($cursoData['archivar'] == 0) {
 		$OUT .= '<button type="submit" class="btn btn-default">Guardar</button>';
-	}
-	if ($_POST['IDvideo'] != '') {
-		$OUT .= '<button type="submit" value="del" name="formDel" class="btn btn-danger">Eliminar</button>';
+		if ($_POST['IDvideo'] != '') {
+			$OUT .= '<button type="submit" value="del" name="formDel" class="btn btn-danger">Eliminar</button>';
+		}
 	}
 	$OUT .= '<input type="hidden" value="videos" name="form" />';
 	$OUT .= '<input type="hidden" value="'.$_POST['IDcurso'].'" name="IDcurso" />';

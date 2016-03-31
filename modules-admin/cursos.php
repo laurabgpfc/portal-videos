@@ -162,7 +162,7 @@ $OUT .= '<form role="form" method="POST" action="'._PORTALROOT.'modules-admin/cu
 	} else {
 		$OUT .= '<button type="submit" class="btn btn-default">Guardar</button>';
 	}
-	if ($_POST['IDcurso'] != '') {
+	if ( ($_POST['IDcurso'] != '')&&($_POST['archivar'] == 0) ) {
 		$OUT .= '<button type="submit" value="del" name="formDel" class="btn btn-danger">Eliminar</button>';
 	}
 	$OUT .= '<input type="hidden" value="cursos" name="form" />';

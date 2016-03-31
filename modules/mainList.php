@@ -9,30 +9,39 @@ global $db;
 $OUT = '';
 $found = 0;
 
-$SQL = 'SELECT * FROM cursos WHERE';
-$SQL .= ' (publico = 1'; // Mostrar los cursos publicos
-
-// O mostrar los cursos que tengan asociado uno de Moodle
-if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 1) ) {
-	$SQL .= ' OR (IDcursoMoodle > 0)';
-} else if ( (isset($_COOKIE['MoodleUserSession']))&&(!isset($_COOKIE['MoodleUserFaltaCorreo'])) ) {
-	$SQL .= ' OR IDcursoMoodle IN (SELECT IDcursoMoodle FROM cursosUsuarios WHERE IDusuario = '.$MoodleUserSession['IDusuario'].')';
-}
-$SQL .= ')';
-
-// Y el curso, si tiene fecha de inicio y fin, se encuentra en fechas
-$SQL .= ' AND ( (fechaIni != "" AND fechaFin != "" AND DATE("now") BETWEEN fechaIni AND fechaFin) OR (fechaIni = "" AND fechaFin = "") )';
-$SQL .= ' AND ocultar = 0'; // Y que no esten ocultos
-$SQL .= ' AND archivar = 0'; // Y que no esten archivados
-$SQL .= ' AND ID IN (SELECT IDcurso FROM videos WHERE ocultar = 0 AND ( (fechaCaducidad != "" AND DATE("now") < fechaCaducidad) OR (fechaCaducidad = "") ))'; // Y que tengan videos
-$SQL .= ' ORDER BY orden DESC, nombre'; // Ordenados por orden descendente y nombre
-
 $OUT .= '<div class="container">';
 	$OUT .= '<div class="row">';
 		$OUT .= '<div class="col-md-12 margin-bottom">';
 			$OUT .= '<h1>Portal v&iacute;deos</h1>';
 			$OUT .= '<p>Bienvenido al portal de v&iacute;deos. Aqu&iacute; podr&aacute; ver los cursos en los que est&aacute; matriculado.</p>';
 		$OUT .= '</div>';
+
+		// Si el usuario está bloqueado, pero tiene iniciada una sesión, no mostrar nada:
+		if ( (isset($_COOKIE['MoodleUserSession']))&&(checkUsuarioBloqueado($MoodleUserSession['IDusuario']) == 1) ) {
+			$OUT .= '<center><strong>Este usuario ha sido bloqueado. No puede visualizar ningún contenido privado.<br/><br/></strong></center>';
+		}
+
+		$SQL = 'SELECT * FROM cursos WHERE';
+		$SQL .= ' (publico = 1'; // Mostrar los cursos publicos
+
+		// Si es un usuario administrador:
+		if ( (isset($_COOKIE['MoodleUserSession']))&&($MoodleUserSession['esAdmin'] == 1) ) {
+			// Mostrar los cursos que tengan asociado uno de Moodle
+			$SQL .= ' OR (IDcursoMoodle > 0)';
+		// Si hay un usuario conectado, y tiene asociado el correo, y no está bloqueado:
+		} else if ( (isset($_COOKIE['MoodleUserSession']))&&(!isset($_COOKIE['MoodleUserFaltaCorreo']))&&(checkUsuarioBloqueado($MoodleUserSession['IDusuario']) == 0) ) {
+			// Mostrar los cursos a los que tiene acceso
+			$SQL .= ' OR IDcursoMoodle IN (SELECT IDcursoMoodle FROM cursosUsuarios WHERE IDusuario = '.$MoodleUserSession['IDusuario'].')';
+		}
+		$SQL .= ')';
+
+		// Y el curso, si tiene fecha de inicio y fin, se encuentra en fechas
+		$SQL .= ' AND ( (fechaIni != "" AND fechaFin != "" AND DATE("now") BETWEEN fechaIni AND fechaFin) OR (fechaIni = "" AND fechaFin = "") )';
+		$SQL .= ' AND ocultar = 0'; // Y que no esten ocultos
+		$SQL .= ' AND archivar = 0'; // Y que no esten archivados
+		$SQL .= ' AND ID IN (SELECT IDcurso FROM videos WHERE ocultar = 0 AND ( (fechaCaducidad != "" AND DATE("now") < fechaCaducidad) OR (fechaCaducidad = "") ))'; // Y que tengan videos
+		$SQL .= ' ORDER BY orden DESC, nombre'; // Ordenados por orden descendente y nombre
+
 
 		// Listar los cursos
 		$res = $db->query($SQL);
@@ -82,6 +91,7 @@ $OUT .= '<div class="container">';
 				}
 			$OUT .= '</div>';
 		}
+	
 		
 	$OUT .= '</div>';
 $OUT .= '</div>';

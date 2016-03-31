@@ -5,7 +5,7 @@ include_once(_DOCUMENTROOT.'db/db.php');
 
 $OUT = '';
 
-function listaItemsCursos($anoAcademico = "", $crear = 1) {
+function listaItemsCursos($anoAcademico = "", $crear = 1, $copiar = 1) {
 	$opt = 'cursos';
 	$OUT = '';
 
@@ -46,10 +46,12 @@ function listaItemsCursos($anoAcademico = "", $crear = 1) {
 				$OUT .= '<span class="glyphicon glyphicon-folder-close"></span>';
 				$OUT .= '<span class="txt" title="'.$item[1].'">'.$item[1].'</span>';
 				$OUT .= '<a class="edit" title="Editar Curso" href="?opt='.$opt.'&IDcurso='.urlencode($item[0]).'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-				$OUT .= '<a class="dup" title="Duplicar Curso" href="?opt='.$opt.'&IDcurso='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				if ($copiar == 1) {
+					$OUT .= '<a class="dup" title="Duplicar Curso" href="?opt='.$opt.'&IDcurso='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				}
 			$OUT .= '</div>';
 			$OUT .= '<ul class="submenu">';
-				$OUT .= listaItemsTemas($item[0], $crear);
+				$OUT .= listaItemsTemas($item[0], $crear, $copiar);
 			$OUT .= '</ul>';
 		$OUT .= '</li>';
 	}
@@ -57,7 +59,7 @@ function listaItemsCursos($anoAcademico = "", $crear = 1) {
 	return $OUT;
 }
 
-function listaItemsTemas($IDcurso, $crear = 1) {
+function listaItemsTemas($IDcurso, $crear = 1, $copiar = 1) {
 	$opt = 'temas';
 	$OUT = '';
 
@@ -99,10 +101,12 @@ function listaItemsTemas($IDcurso, $crear = 1) {
 				$OUT .= '<span class="glyphicon glyphicon-folder-close"></span>';
 				$OUT .= '<span class="txt" title="'.$item[1].'">'.$item[1].'</span>';
 				$OUT .= '<a class="edit" title="Editar Tema" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($item[0]).'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-				$OUT .= '<a class="dup" title="Duplicar Tema" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				if ($copiar == 1) {
+					$OUT .= '<a class="dup" title="Duplicar Tema" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				}
 			$OUT .= '</div>';
 			$OUT .= '<ul class="submenu">';
-				$OUT .= listaItemsVideos($IDcurso, $item[0], $crear);
+				$OUT .= listaItemsVideos($IDcurso, $item[0], $crear, $copiar);
 			$OUT .= '</ul>';
 		$OUT .= '</li>';
 	}
@@ -110,7 +114,7 @@ function listaItemsTemas($IDcurso, $crear = 1) {
 	return $OUT;
 }
 
-function listaItemsVideos($IDcurso, $IDtema, $crear = 1) {
+function listaItemsVideos($IDcurso, $IDtema, $crear = 1, $copiar = 1) {
 	$opt = 'videos';
 	$OUT = '';
 
@@ -152,10 +156,12 @@ function listaItemsVideos($IDcurso, $IDtema, $crear = 1) {
 			//	$OUT .= '<span class="glyphicon glyphicon-facetime-video"></span>';
 				$OUT .= '<span class="txt" title="'.$item[1].'">'.$item[1].'</span>';
 				$OUT .= '<a class="edit" title="Editar V&iacute;deo" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($item[0]).'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-				$OUT .= '<a class="dup" title="Duplicar V&iacute;deo" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				if ($copiar == 1) {
+					$OUT .= '<a class="dup" title="Duplicar V&iacute;deo" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($item[0]).'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				}
 			$OUT .= '</div>';
 			$OUT .= '<ul class="submenu">';
-				$OUT .= listaItemsAdjuntos($IDcurso, $IDtema, $item[0], $crear);
+				$OUT .= listaItemsAdjuntos($IDcurso, $IDtema, $item[0], $crear, $copiar);
 			$OUT .= '</ul>';
 		$OUT .= '</li>';
 	}
@@ -164,7 +170,7 @@ function listaItemsVideos($IDcurso, $IDtema, $crear = 1) {
 }
 
 
-function listaItemsAdjuntos($IDcurso, $IDtema, $IDvideo, $crear = 1) {
+function listaItemsAdjuntos($IDcurso, $IDtema, $IDvideo, $crear = 1, $copiar = 1) {
 	$opt = 'adjuntos';
 	$OUT = '';
 
@@ -200,7 +206,9 @@ function listaItemsAdjuntos($IDcurso, $IDtema, $IDvideo, $crear = 1) {
 				$OUT .= '<span class="glyphicon glyphicon-file"></span>';
 				$OUT .= '<span class="txt" title="'.$item[1].'">'.$item[1].'</span>';
 				$OUT .= '<a class="edit" title="Editar Adjunto" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($IDvideo).'&IDadjunto='.$item[0].'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-				$OUT .= '<a class="dup" title="Duplicar Adjunto" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($IDvideo).'&IDadjunto='.$item[0].'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				if ($copiar == 1) {
+					$OUT .= '<a class="dup" title="Duplicar Adjunto" href="?opt='.$opt.'&IDcurso='.urlencode($IDcurso).'&IDtema='.urlencode($IDtema).'&IDvideo='.urlencode($IDvideo).'&IDadjunto='.$item[0].'"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a>';
+				}
 			$OUT .= '</div>';
 		$OUT .= '</li>';
 	}
@@ -243,7 +251,7 @@ for ($i = 0; $i < sizeof($menu); $i++) {
 				
 				$OUT .= '<div class="tree no-mostrar">';
 					$OUT .= '<ul class="nav nav-sidebar">';
-						$OUT .= listaItemsCursos($listaAnosAcademicos[$j], 0);
+						$OUT .= listaItemsCursos($listaAnosAcademicos[$j], 0, 0);
 					$OUT .= '</ul>';
 				$OUT .= '</div>';
 			$OUT .= '</div>';

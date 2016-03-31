@@ -16,9 +16,13 @@ if (isset($_POST['login'])) {
 			$usuario = getUserData('', $_POST['userName'], '');
 			setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), '/');
 			
-			// Añadir registro al log de accesos:
-			if ($usuario['IDusuario'] > 0) {
-				logAcceso($usuario['IDusuario'], 'login', 'Acceso de '.$usuario['fullname']);
+			if ($usuario['bloqueado'] == 1) {
+				echo 'Este usuario tiene ha sido bloqueado';
+			} else {
+				// Añadir registro al log de accesos:
+				if ($usuario['IDusuario'] > 0) {
+					logAcceso($usuario['IDusuario'], 'login', 'Acceso de '.$usuario['fullname']);
+				}
 			}
 		} else {
 			$rsp = login($_POST['userName'], $_POST['userPass']);
@@ -32,9 +36,13 @@ if (isset($_POST['login'])) {
 					setcookie('MoodleUserFaltaCorreo', encrypt($_POST['userName'],1), time() + (86400 * 30), '/'); // 86400 = 1 day
 
 				} else {
-					// Añadir registro al log de accesos:
-					if ($usuario['IDusuario'] > 0) {
-						logAcceso($usuario['IDusuario'], 'login', 'Acceso de '.$usuario['fullname']);
+					if ($usuario['bloqueado'] == 1) {
+						echo 'Este usuario tiene ha sido bloqueado';
+					} else {
+						// Añadir registro al log de accesos:
+						if ($usuario['IDusuario'] > 0) {
+							logAcceso($usuario['IDusuario'], 'login', 'Acceso de '.$usuario['fullname']);
+						}
 					}
 				}
 			}
@@ -55,12 +63,12 @@ if (isset($_POST['login'])) {
 		$usuario = getUserData('', '', $_POST['email']);
 		
 		setcookie('MoodleUserSession', encrypt($usuario,1), time() + (86400 * 30), '/');
-		
+
 		// Añadir registro al log de accesos:
 		if ($usuario['IDusuario'] > 0) {
 			logAcceso($usuario['IDusuario'], 'login', 'Asociado correo de '.$usuario['fullname']);
 		}
-
+		
 		unset($_COOKIE['MoodleUserFaltaCorreo']);
 		setcookie('MoodleUserFaltaCorreo', null, -1, '/');
 	}
